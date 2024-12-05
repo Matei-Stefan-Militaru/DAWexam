@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>User Validation</title>
+ <script>
+ // Function to make the POST request using Fetch API
+ function validateUser(event) {
+ event.preventDefault(); // Prevent default form behavior
+ // Get the form values
+ const username = document.getElementById('username').value;
+ const password = document.getElementById('password').value;
+ // Create the data object
+ const data = {
+ name: username,
+ password: password
+ };
+ // Make the POST request to the REST server
+ fetch('http://localhost/validate', {
+ method: 'POST',
+ headers: {
+ 'Content-Type': 'application/json'
+ },
+ body: JSON.stringify(data) // Send the data as JSON
+ })
+ .then(response => response.json()) // Convert the response to JSON
+ .then(data => {
+ if (data.authenticated) {
+ alert('User successfully authenticated');
+ } else {
+ alert('Invalid credentials');
+ }
+ })
+ .catch(error => {
+ console.error('Error:', error);
+ alert('There was an error during authentication');
+ });
+ }
+ </script>
+</head>
+<body>
+ <h2>User Validation</h2>
+ <form onsubmit="validateUser(event)">
+ <div>
+ <label for="username">Username:</label>
+ <input type="text" id="username" name="username" required>
+ </div>
+ <div>
+ <label for="password">Password:</label>
+ <input type="password" id="password" name="password" required>
+ </div>
+ <div>
+ <button type="submit">Validate</button>
+ </div>
+ </form>
+</body>
+</html>

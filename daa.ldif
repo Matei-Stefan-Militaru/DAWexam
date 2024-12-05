@@ -1,0 +1,37 @@
+dn: ou=people,dc=dawmor,dc=cloud
+objectClass: top
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=groups,dc=dawmor,dc=cloud
+objectClass: top
+objectClass: organizationalUnit
+ou: groups
+
+# Users
+dn: uid=modesto,ou=people,dc=dawmor,dc=cloud
+objectClass: inetOrgPerson
+uid: modesto
+cn: Modesto Sierra
+sn: Sierra
+mail: msierra@iesmordefuentes.com
+userPassword: password123
+
+dn: uid=blanca,ou=people,dc=dawmor,dc=cloud
+objectClass: inetOrgPerson
+uid: blanca
+cn: Blanca Lorente
+sn: Lorente
+mail: blorente@iesmordefuentes.com
+userPassword: password456
+
+# Groups
+dn: cn=admins,ou=groups,dc=dawmor,dc=cloud
+objectClass: groupOfNames
+cn: admins
+member: uid=blanca,ou=people,dc=dawmor,dc=cloud
+
+dn: cn=users,ou=groups,dc=dawmor,dc=cloud
+objectClass: groupOfNames
+cn: users
+member: uid=modesto,ou=people,dc=dawmor,dc=cloud
